@@ -418,10 +418,14 @@ class MobileScanner(
 
             // Build the preview to be shown on the Flutter texture
             val previewBuilder = Preview.Builder()
+                // Lock preview rotation to portrait; do not follow display rotation.
+                .setTargetRotation(Surface.ROTATION_0)
             preview = previewBuilder.build().apply { setSurfaceProvider(surfaceProvider) }
 
             // Build the analyzer to be passed on to MLKit
             val analysisBuilder = ImageAnalysis.Builder()
+                // Lock analysis rotation to portrait; do not follow display rotation.
+                .setTargetRotation(Surface.ROTATION_0)
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .setOutputImageFormat(OUTPUT_IMAGE_FORMAT_YUV_420_888)
             val displayManager = activity.applicationContext.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager

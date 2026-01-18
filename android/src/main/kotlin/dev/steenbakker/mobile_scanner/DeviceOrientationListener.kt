@@ -118,16 +118,7 @@ class DeviceOrientationListener(
 
         val newOrientation: PlatformChannel.DeviceOrientation
 
-        if (autoRotateEnabled) {
-            newOrientation = when (orientation) {
-                in 45..134 -> PlatformChannel.DeviceOrientation.LANDSCAPE_RIGHT
-                in 135..224 -> PlatformChannel.DeviceOrientation.PORTRAIT_DOWN
-                in 225..314 -> PlatformChannel.DeviceOrientation.LANDSCAPE_LEFT
-                else -> PlatformChannel.DeviceOrientation.PORTRAIT_UP
-            }
-        } else {
-            newOrientation = getUIOrientation()
-        }
+        newOrientation = getUIOrientation()
 
         if (newOrientation != lastOrientation) {
             lastOrientation = newOrientation
